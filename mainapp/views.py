@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from . import sudokusolver
 from .models import Image
 from django.contrib import messages
-from django.http import response
+
+
 # Create your views here.
 def home(request):
     if request.method == 'POST':
@@ -21,7 +22,7 @@ def home(request):
             'unsolved':unsolved, 
             'solved':solved
         }
-        return response.JsonResponse(context, safe=False)
+        return render(request, 'sudoku_solver.html', context)
 
 
     Image.objects.all().delete()
